@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Nerdy Jock FF</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+   
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ml-auto">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="">Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="">LinkedIn</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="">About Me</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <a class="btn btn-outline" href=""><i class="fa fa-envelope-o"></i></a>
+         
+        </form>
+        <form class="form-inline my-2 my-lg-0">
+                <a class="btn" href="">Log In</a>
+        </form>
+      </div>
+    </nav>
+
+    <main role="main" style="padding-top:200px">
+
+            <!-- Main jumbotron for a primary marketing message or call to action -->
+            <div class="container jumbotron" style="padding-top:100px;padding-bottom:100px">
+              <div class="container text-center" style=padding-top:25px>
+      
+               {% block content%}
+               {%endblock%}
+      
+              </div> 
+               
+              </div>
+      
+            
+      
+          </main>
+
+
+
+    <footer class="footer text-center container-fluid fixed-bottom" style="padding-bottom:10px">
+            <div style="padding-top:70px">
+              
+                    <hr>
+            
+            </div>    
+        <div class="container">
+                    
+                <span style=font-size:25px>&copy; Michael Mann {% now 'Y'%}</span>
+                <br>
+                <span> 
+                    <a style="font-size:25px" class="btn btn-sm fa fa-linkedin square" href="https://www.linkedin.com/in/mike-mann-a82962113/"></a>
+                </span>
+                <span>
+                    <a style="font-size:25px" class="btn btn-sm fa fa-github social" href="https://github.com/mannmik"></a>
+                </span>
+                <span>
+                    <a style="font-size:21px" class="btn btn-sm fa fa-envelope-o" href="mailto:mannmik@oregonstate.edu?Subject=Hey Mike!"></a>
+                </span>
+                <br />
+            </div>
+        </footer>
+    
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+      </body>
+    </html>
