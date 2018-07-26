@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'NFLteams.apps.NflteamsConfig',
     'UserAccount.apps.UserAccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
