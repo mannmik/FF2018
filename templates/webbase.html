@@ -42,24 +42,35 @@
           <a class="btn btn-outline" href=""><i class="fa fa-envelope-o"></i></a>
          
         </form>
-        <form class="form-inline my-2 my-lg-0">
-                <a class="btn" href="">Log In</a>
+
+        {% if user.is_authenticated %}
+        <form id='logout' name='logout' method="POST" action="{% url 'logout' %}"class="form-inline my-2 my-lg-0">
+                {% csrf_token %}
+                <a class="btn" href="{% url 'login' %}" onclick="javascript:{document.getElementById('logout').submit()}">Logout</a>
         </form>
+        {% else %}
+        <form class="form-inline my-2 my-lg-0">
+                <a class="btn" href="{% url 'signup' %}">Sign Up!</a>
+        </form>
+        <form class="form-inline my-2 my-lg-0">
+                <a class="btn" href="{% url 'login' %}">Log In</a>
+        </form>
+        {% endif %}
       </div>
     </nav>
 
-    <main role="main" style="padding-top:200px">
+    <main role="main" style="padding-top:100px">
 
             <!-- Main jumbotron for a primary marketing message or call to action -->
             <div class="container jumbotron" style="padding-top:100px;padding-bottom:100px">
-              <div class="container text-center" style=padding-top:25px>
+                <div class="container text-center" style=padding-top:25px>
       
-               {% block content%}
-               {%endblock%}
+                {% block content%}
+                {%endblock%}
       
-              </div> 
+                </div> 
                
-              </div>
+            </div>
       
             
       
@@ -67,8 +78,8 @@
 
 
 
-    <footer class="footer text-center container-fluid fixed-bottom" style="padding-bottom:10px">
-            <div style="padding-top:70px">
+    <footer class="footer text-center container-fluid" style="padding-bottom:10px">
+            <div >
               
                     <hr>
             

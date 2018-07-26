@@ -1,0 +1,35 @@
+{%extends 'webbase.html' %}
+
+{% block content%}
+
+ <!-- Main jumbotron for a primary marketing message or call to action -->
+ <div class="container jumbotron">
+        <div class="container text-center" style=width:400px>
+            {% if error %}
+           <p> <em>{{ error }}</em></p> 
+            <br />
+            {% endif %}
+          <form class="form-group" action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            <div class="container text-center fa fa-user-circle" style="font-size:100px;padding-bottom:20px"></div>
+                <label for="username" class="sr-only">Username</label>
+                <input type="username" id="username" name="username" class="form-control" placeholder="Username" required autofocus>    
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+                <label for="Password"  class="sr-only">Password</label>
+                <input type="password" id="Password" name="password" class="form-control" placeholder="Password" required>
+                <label for="PasswordConfirm"  class="sr-only">Re-Type Password</label>
+                <input type="password" id="PasswordConfirm" name="passwordConfirm" class="form-control" placeholder="Re-Type Password" required>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+           </form>
+
+    	  </div> 
+         
+      </div>
+
+{%endblock%}
