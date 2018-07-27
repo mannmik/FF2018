@@ -10,12 +10,30 @@
 
         <div>
                 {% if link %}
-                {% for i in link %}    
-                
-                <a href={{i.Link}}> {{ i.Name }}</a>
-                <br />
 
-                {% endfor %}
+                <table class="table table-dark table-responsive">
+                        <thead>
+                                <tr>
+                                <th scope="col">QB</th>
+                                <th scope="col">RB</th>
+                                <th scope="col">WR</th>
+                                <th scope="col">TE</th>
+                                </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% for i in link %}    
+                                <tr>
+                                <td><a href={{i.Link}}> {{ i.Name }}</a></td>
+                                <td>{{i.rb.Name}}</td>
+                                <td>""</td>
+                                <td>""</td>
+                                </tr>
+                        {% endfor %}
+                        </tbody>
+                </table>
+
+                
 
                 {% endif %}
         </div>

@@ -54,7 +54,8 @@ def Init(request):
 
 def CheatSheet(request):
    
-    playerList = api_services.cheat_sheet_scraper()
+    playerList = api_services.cheat_sheet_scraper("QB")
+    rb_list = api_services.cheat_sheet_scraper("RB")
     #link = api_services.cheat_sheet_scraper()
-    return render(request, 'success.html', {"link":playerList})
+    return render(request, 'success.html', {"link":playerList, "rb":rb_list})
     
