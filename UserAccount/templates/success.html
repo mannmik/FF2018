@@ -9,8 +9,20 @@
         </h4>
 
         <div>
+                {% if link %}
+                {% for i in link %}    
+                
+                <a href={{i.Link}}> {{ i.Name }}</a>
+                <br />
+
+                {% endfor %}
+
+                {% endif %}
+        </div>
+
+        <div>
                 {% for i in teamList %}
-                {{ i }}
+                {{i.code}} - {{i.byeWeek}}
                 <br />
                 {% endfor %}
         </div>

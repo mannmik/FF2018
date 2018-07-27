@@ -21,7 +21,7 @@ class NFL_Team(models.Model):
     te_SOS = models.IntegerField(default = -1)
 
     def __str__(self):
-        return self.title
+        return self.code
 
     def set_code(self, teamcode):
         self.code = teamcode
