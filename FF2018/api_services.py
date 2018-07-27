@@ -62,8 +62,8 @@ def cheat_sheet_scraper():
     playerList = []
 
     qb_data = soup.find_all("div", {"class":"three columns position-QB"})
-    for i in qb_data:
-        print(i.contents[1])
+    # for i in qb_data:
+    #     print(i.contents[1])
 
     qb_name = qb_data[0].contents[3].find_all("a")  
     qb_team = qb_data[0].contents[3].find_all("small", {"class":"grey"})
@@ -76,7 +76,6 @@ def cheat_sheet_scraper():
     #     print(team.text)
 
     for link in qb_link:
-        baseUrl = "https://www.fantasypros.com"
         player = PlayerStruct(link.text, baseUrl + link.get('href'))
         playerList.append(player)
         # url = baseUrl + link.get('href')
