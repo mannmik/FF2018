@@ -76,7 +76,8 @@ def cheat_sheet_scraper():
     #     print(team.text)
 
     for link in qb_link:
-        player = PlayerStruct(link.text, link.get('href'))
+        baseUrl = "https://www.fantasypros.com"
+        player = PlayerStruct(link.text, baseUrl + link.get('href'))
         playerList.append(player)
         # url = baseUrl + link.get('href')
         # print(url)
