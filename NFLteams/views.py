@@ -32,6 +32,13 @@ def Init(request):
         # stores the team codes for each NFL team
         teamList = []
 
+        # ----------- TODO ----------
+        # Need to web scrape the strength of schedule 
+        # scrape weeks 10-16 for each time
+        # FF toolbox has info all in one place
+        # then add all of these attributes to our new NFL_Team object in the loop
+        #----------------------------
+
         for i in teams["NFLTeams"]:
             newTeam = NFL_Team()
             newTeam.code = i['code']

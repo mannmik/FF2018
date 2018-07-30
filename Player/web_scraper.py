@@ -32,7 +32,7 @@ def cheat_sheet_scraper(position):
 
     # struct used to store this info temorarily
     # TODO save in a Player app / model
-    PlayerStruct = namedtuple("PlayerStruct", "Name Link")
+    PlayerStruct = namedtuple("PlayerStruct", "Rank Name Link")
 
     # empty player list that will be returned
     playerList = []
@@ -46,11 +46,12 @@ def cheat_sheet_scraper(position):
     player_name = player_data[0].contents[3].find_all("a")                                      # grabs the name
     player_team = player_data[0].contents[3].find_all("small", {"class":"grey"})                # grabs the team code i.e. "SF"
     player_link = player_data[0].contents[3].find_all("a")                                      # grabs all the link to player profiles
-
+   
     # tracks the actual player links
     # each player has two <a> tags but one is empty
     totalValidLinks = 0
 
+    rnk = 0
     # for loop fills our player struct with the required info
     # loops through the length of the players scraped
     for i in range(len(player_name)):
@@ -59,14 +60,17 @@ def cheat_sheet_scraper(position):
 
         # if this is one of the valid links
         if link != "#":
-            # save the text of our player
-            name = player_name[i].text + ", " + player_team[totalValidLinks].text
+           
+            rnk = totalValidLinks + 1
 
+            # save the text of our player
+            name =  player_name[i].text + ", " + player_team[totalValidLinks].text
+            
             # increase the valid links found
             totalValidLinks += 1
 
             # store the iinformation gathered in our player structs
-            player = PlayerStruct(name, baseUrl + link)
+            player = PlayerStruct(rnk, name, baseUrl + link)
 
             # add to our list of players
             playerList.append(player)

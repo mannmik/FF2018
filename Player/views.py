@@ -22,9 +22,11 @@ def CheatSheet(request):
 
     for i in range(len(rb_list)):
         if i <= 36:
-            players.append(PlayerTable(qb_list[i][0], qb_list[i][1], rb_list[i][0], rb_list[i][1], wr_list[i][0], wr_list[i][1], te_list[i][0], te_list[i][1] ))
+            players.append(PlayerTable(str(qb_list[i][0]) +". " + qb_list[i][1], qb_list[i][2], str(rb_list[i][0]) + ". " + rb_list[i][1], rb_list[i][2], 
+            str(wr_list[i][0]) + ". " + wr_list[i][1], wr_list[i][2], str(te_list[i][0])  + ". " + te_list[i][1], te_list[i][2] ))
         else:
-            players.append(PlayerTable("", "", rb_list[i][0], rb_list[i][1], wr_list[i][0], wr_list[i][0], "", "" ))
+            players.append(PlayerTable("", "", str(rb_list[i][0]) + ". " + rb_list[i][1], rb_list[i][2], 
+            str(wr_list[i][0]) + ". " + wr_list[i][1], wr_list[i][2], "", "" ))
 
     #link = api_services.cheat_sheet_scraper()
     return render(request, 'cheatsheet.html', {'players':players})
