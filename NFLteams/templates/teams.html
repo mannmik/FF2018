@@ -1,7 +1,82 @@
 {%extends 'webbase.html' %}
+{% load staticfiles %}
  
+{% block title %}
+        <h1>
+                Nerdy Jock Fantasy Footall 2018
+                
+        </h1>
+        
+        <h4>
+            Oldskool FFL Champions - Wolpack*
+        </h4>
+        <div>
+            <img src="{% static 'head_icon.png' %}" class="d-inline-block" />
+        </div>
+{% endblock %} 
+
  {% block content %}
 
+    {% if team_list %}
+    <div class="container text-center">
+            <h2>NFL Team Info</h2>
+            <p></p>            
+            <table class="table">
+              <thead>
+               
+                    <tr>
+                        <th>Team Code</th>
+                        <th>Team Name</th>
+                        <th>Bye Week</th>
+                    </tr>
+                
+              </thead>
+              <tbody>
+                {% for i in team_list.all %}
+                <tr>
+                  <td>{{i.code}}</td>
+                  <td>{{i.fullName}}</td>
+                  <td>{{i.byeWeek}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div> 
+        
+            <br />
+       
 
+    {% endif %}
 
  {% endblock %}
+
+ <div class="container text-center">
+        <h2>NFL Team Info</h2>
+        <p></p>            
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Team Code</th>
+              <th>Team Name</th>
+              <th>Bye Week</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{i.code}}</td>
+              <td>{{i.fullName}}</td>
+              <td>{{i.byeWeek}}</td>
+            </tr>
+            <tr>
+              <td>Mary</td>
+              <td>Moe</td>
+              <td>mary@example.com</td>
+            </tr>
+            <tr>
+              <td>July</td>
+              <td>Dooley</td>
+              <td>july@example.com</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 

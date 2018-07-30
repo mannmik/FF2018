@@ -1,0 +1,61 @@
+{%extends 'webbase.html' %}
+{% load staticfiles %}
+
+{% block title%}
+        <h1>
+                Nerdy Jock Fantasy Footall 2018
+                
+        </h1>
+        
+        <h4>
+            Oldskool FFL Champions - Wolpack*
+        </h4>
+        <div>
+            <img src="{% static 'head_icon.png' %}" class="d-inline-block" />
+        </div>
+{% endblock %} 
+
+{% block content %}
+        <br />
+
+        <div>
+                {% if players %}
+
+                <table class="table table-dark">
+                        <thead>
+                                <tr>
+                                <th scope="col">QB</th>
+                                <th scope="col">RB</th>
+                                <th scope="col">WR</th>
+                                <th scope="col">TE</th>
+                                </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% for i in players %}
+
+                                <tr>
+                                <td>
+                                        <a href={{i.qb_link}} target="_blank" style="color:deepskyblue"> {{ i.qb_name }}</a>
+                                </td>
+                                <td>
+                                        <a href={{i.rb_link}} target="_blank" style="color:deepskyblue">{{  i.rb_name }} </a>
+                                </td>
+                                <td>
+                                        <a href={{i.wr_link}} target="_blank" style="color:deepskyblue">{{  i.wr_name }} </a>
+                                </td>
+                                <td>
+                                        <a href={{i.te_link}} target="_blank" style="color:deepskyblue">{{  i.te_name }} </a>
+                                </td>
+                                </tr>
+                        {% endfor %}
+                        </tbody>
+                </table>
+
+                
+
+                {% endif %}
+        </div>
+
+
+{% endblock %}

@@ -46,16 +46,35 @@ def Init(request):
                         continue
 
             teamList.append(newTeam)
+            newTeam.save()
 
-        return render(request, 'success.html', {"teamList":teamList} )
+        return render(request, 'teams.html', {"teamList":teamList} )
     else:
-        return redirect('home')
+        return render(request, 'login.html' , {"error": "You must be logged in to complete this action."})
 
 
-def CheatSheet(request):
+def Teams(request):
+    team_list = NFL_Team.objects
+    return render(request, 'teams.html', {"team_list":team_list})
+
+
+# def CheatSheet(request):
    
-    playerList = api_services.cheat_sheet_scraper("QB")
-    rb_list = api_services.cheat_sheet_scraper("RB")
-    #link = api_services.cheat_sheet_scraper()
-    return render(request, 'success.html', {"link":playerList, "rb":rb_list})
+#     qb_list = api_services.cheat_sheet_scraper("QB")
+#     rb_list = api_services.cheat_sheet_scraper("RB")
+#     wr_list = api_services.cheat_sheet_scraper("WR")
+#     te_list = api_services.cheat_sheet_scraper("TE")
+    
+#     players = []
+
+#     PlayerTable = namedtuple("PlayerTable", "qb_name qb_link rb_name rb_link wr_name wr_link te_name te_link")
+
+#     for i in range(len(rb_list)):
+#         if i <= 36:
+#             players.append(PlayerTable(qb_list[i][0], qb_list[i][1], rb_list[i][0], rb_list[i][1], wr_list[i][0], wr_list[i][0], te_list[i][0], te_list[i][1] ))
+#         else:
+#             players.append(PlayerTable("", "", rb_list[i][0], rb_list[i][1], wr_list[i][0], wr_list[i][0], "", "" ))
+
+#     #link = api_services.cheat_sheet_scraper()
+#     return render(request, 'success.html', {'players':players})
     

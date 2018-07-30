@@ -9,4 +9,5 @@ urlpatterns = [
     #path('login/', views.LogIn),
     path('useraccount/', include('UserAccount.urls')),
     path('nflteams/', include('NFLteams.urls')),
+    path('player/', include('Player.urls')),
 ]

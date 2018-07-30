@@ -1,4 +1,5 @@
 <!doctype html>
+{% load staticfiles %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -17,6 +18,8 @@
 
     <!-- Custom styles for this template -->
    
+
+   
   </head>
 
   <body>
@@ -27,35 +30,51 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'home' %}">
+                      <img src="{% static 'nerd.png' %}" height=50px width=50px class="d-inline-block" />
+                  </a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'home' %}">
+                    
+                    <font size = 5>Nerdy Jock Fantasy Football</font> 
+                   
+                    </a>
+              </li>
+          </ul>
+
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only"></span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="">LinkedIn</a>
+            <a class="nav-link" href="{% url 'cheatsheet' %}">Cheatsheet</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="">About Me</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <a class="btn btn-outline" href=""><i class="fa fa-envelope-o"></i></a>
-         
-        </form>
 
         {% if user.is_authenticated %}
-        <form id='logout' name='logout' method="POST" action="{% url 'logout' %}"class="form-inline my-2 my-lg-0">
-                {% csrf_token %}
-                <a class="btn" href="{% url 'login' %}" onclick="javascript:{document.getElementById('logout').submit()}">Logout</a>
-        </form>
+          <form id='logout' name='logout' method="POST" action="{% url 'logout' %}"class="form-inline my-2 my-lg-0">
+                  {% csrf_token %}
+                  <a style="color:white" class="btn" href="{% url 'login' %}" onclick="javascript:{document.getElementById('logout').submit()}">Logout</a>
+          </form>
         {% else %}
-        <form class="form-inline my-2 my-lg-0">
-                <a class="btn" href="{% url 'signup' %}">Sign Up!</a>
-        </form>
-        <form class="form-inline my-2 my-lg-0">
-                <a class="btn" href="{% url 'login' %}">Log In</a>
-        </form>
+          <form class="form-inline my-2 my-lg-0">
+                  <a style="color:white" class="btn" href="{% url 'signup' %}">Sign Up!</a>
+          </form>
+          <form class="form-inline my-2 my-lg-0">
+                  <a style="color:white" class="btn" href="{% url 'login' %}">Log In</a>
+          </form>
         {% endif %}
+
+        <form class="form-inline my-2 my-lg-0">
+            <a style="color:white" class="btn btn-outline" href="mailto:OGnerdyjock@gmail.com?Subject=Hey, from another Nerdy Jock"><i class="fa fa-envelope-o"></i></a>
+           
+          </form>
       </div>
     </nav>
 
@@ -64,14 +83,20 @@
             <!-- Main jumbotron for a primary marketing message or call to action -->
             <div class="container jumbotron" style="padding-top:100px;padding-bottom:100px">
                 <div class="container text-center" style=padding-top:25px>
-      
-                {% block content%}
+                
+                {% block title %}
                 {%endblock%}
       
                 </div> 
                
             </div>
-      
+            
+            <div class="container">
+              
+            {% block content %}
+            {% endblock %}
+
+            </div>
             
       
           </main>
@@ -86,16 +111,16 @@
             </div>    
         <div class="container">
                     
-                <span style=font-size:25px>&copy; Michael Mann {% now 'Y'%}</span>
+                <span style=font-size:20px>&copy; A Nerdy Jock - Michael Mann {% now 'Y'%}</span>
                 <br>
                 <span> 
-                    <a style="font-size:25px" class="btn btn-sm fa fa-linkedin square" href="https://www.linkedin.com/in/mike-mann-a82962113/"></a>
+                    <a style="font-size:25px; color:deepskyblue" class="btn btn-sm fa fa-linkedin square" href="https://www.linkedin.com/in/mike-mann-a82962113/"></a>
                 </span>
                 <span>
-                    <a style="font-size:25px" class="btn btn-sm fa fa-github social" href="https://github.com/mannmik"></a>
+                    <a style="font-size:25px; color:deepskyblue" class="btn btn-sm fa fa-github social" href="https://github.com/mannmik"></a>
                 </span>
                 <span>
-                    <a style="font-size:21px" class="btn btn-sm fa fa-envelope-o" href="mailto:mannmik@oregonstate.edu?Subject=Hey Mike!"></a>
+                    <a style="font-size:21px; color:deepskyblue" class="btn btn-sm fa fa-envelope-o" href="mailto:OGnerdyjock@gmail.com?Subject=Hey, from another Nerdy Jock"></a>
                 </span>
                 <br />
             </div>
@@ -107,5 +132,6 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    
       </body>
     </html>

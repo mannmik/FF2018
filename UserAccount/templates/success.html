@@ -9,9 +9,9 @@
         </h4>
 
         <div>
-                {% if link %}
+                {% if players %}
 
-                <table class="table table-dark table-responsive">
+                <table class="table table-dark">
                         <thead>
                                 <tr>
                                 <th scope="col">QB</th>
@@ -22,12 +22,21 @@
                         </thead>
                         
                         <tbody>
-                        {% for i in link %}    
+                        {% for i in players %}
+
                                 <tr>
-                                <td><a href={{i.Link}}> {{ i.Name }}</a></td>
-                                <td>{{i.rb.Name}}</td>
-                                <td>""</td>
-                                <td>""</td>
+                                <td>
+                                        <a href={{i.qb_link}} style="color:deepskyblue"> {{ i.qb_name }}</a>
+                                </td>
+                                <td>
+                                        <a href={{i.rb_link}} style="color:deepskyblue">{{  i.rb_name }} </a>
+                                </td>
+                                <td>
+                                        <a href={{i.wr_link}} style="color:deepskyblue">{{  i.wr_name }} </a>
+                                </td>
+                                <td>
+                                        <a href={{i.te_link}} style="color:deepskyblue">{{  i.te_name }} </a>
+                                </td>
                                 </tr>
                         {% endfor %}
                         </tbody>
@@ -38,12 +47,6 @@
                 {% endif %}
         </div>
 
-        <div>
-                {% for i in teamList %}
-                {{i.code}} - {{i.byeWeek}}
-                <br />
-                {% endfor %}
-        </div>
 
 {% endblock %}
  
