@@ -9,6 +9,20 @@
         </h4>
 
         <div>
+                {% if news %}
+                <h4>
+                                SUCCESS!
+                            </h4>
+                        <ul>
+                        {% for i in news %}
+
+                         <li> <a href={{i.Link}} >{{ i.Text }}</a>  </li>     
+
+                        {% endfor %}
+                        </ul>
+
+                {% endif %}
+
                 {% if players %}
 
                 <table class="table table-dark">

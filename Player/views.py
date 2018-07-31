@@ -30,3 +30,9 @@ def CheatSheet(request):
 
     #link = api_services.cheat_sheet_scraper()
     return render(request, 'cheatsheet.html', {'players':players})
+
+
+def PlayerNews(request):
+    news = web_scraper.fantasy_news_scraper()
+
+    return render(request, "success.html", {"news":news})  

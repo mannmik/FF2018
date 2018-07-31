@@ -60,7 +60,7 @@
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                          <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+                          <a class="nav-link active" data-toggle="tab" href="#home">Fantasy Pros</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
@@ -73,44 +73,43 @@
                       <!-- Tab panes -->
                       <div class="tab-content">
                         <div id="home" class="container tab-pane active"><br>
-                          <h3>HOME</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                          
+                          <p style="text-align:left" >
+                              {% if news %}
+
+                              <ul class="list-group list-group-flush" style="text-align:left">
+                              {% for i in news %}
+      
+                               <li class="list-group-item"style="text-align:left"> <a href={{i.Link}} >{{ i.Text }}</a>  </li>     
+      
+                              {% endfor %}
+                              </ul>
+      
+                              {% endif %}
+                          </p>
                         </div>
                         <div id="menu1" class="container tab-pane fade"><br>
                           <h3>Menu 1</h3>
                           <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         </div>
                         <div id="menu2" class="container tab-pane fade"><br>
-                          <h3>Menu 2</h3>
                           <p>
                               <table class="table table-dark">
                                   <thead>
                                     <tr>
-                                      <th scope="col">#</th>
-                                      <th scope="col">First</th>
-                                      <th scope="col">Last</th>
-                                      <th scope="col">Handle</th>
+                                      <th scope="col">Player News Via FantasyPros</th>
                                     </tr>
                                   </thead>
                                   <tbody>
+                                      {% if news %}
+                                      {% for i in news %}
                                     <tr>
-                                      <th scope="row">1</th>
-                                      <td>Mark</td>
-                                      <td>Otto</td>
-                                      <td>@mdo</td>
+                                      <td style="text-align:left">
+                                          <a style="color: deepskyblue" href={{i.Link}} target="_blank" >{{ i.Text }}</a>
+                                      </td>
                                     </tr>
-                                    <tr>
-                                      <th scope="row">2</th>
-                                      <td>Jacob</td>
-                                      <td>Thornton</td>
-                                      <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td>Larry</td>
-                                      <td>the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
+                                    {% endfor %}
+                                    {% endif %}
                                   </tbody>
                                 </table>
                           </p>
