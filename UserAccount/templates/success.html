@@ -14,12 +14,21 @@
                                 SUCCESS!
                             </h4>
                         <ul>
-                        {% for i in news %}
-
-                         <li> <a href={{i.Link}} >{{ i.Text }}</a>  </li>     
+                        {% for i in news.0 %}
+                                
+                        <li>{{news}}</li>
+                         <!--<li> <a href={{i.Link}} target="_blank" >{{ i.Text }}</a>  </li> -->    
 
                         {% endfor %}
                         </ul>
+
+                        <ul>
+                                        {% for i in news.1 %}
+                
+                                         <li> <a href={{i.Link}} target="_blank" >{{ i.Text }}</a>  </li>     
+                
+                                        {% endfor %}
+                                        </ul>
 
                 {% endif %}
 

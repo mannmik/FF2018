@@ -7,11 +7,11 @@ from collections import namedtuple
 def cheat_sheet_scraper(position):
 
      # the base url info we are using to scrape the cheatsheet
-    baseUrl = "https://www.fantasypros.com"
+    ff_Pro_baseUrl = "https://www.fantasypros.com"
     cht_sht = "/nfl/cheatsheets/"
 
     # we make a get request to fantasy webpage and store the content
-    req = requests.get(baseUrl + cht_sht)
+    req = requests.get(ff_Pro_baseUrl + cht_sht)
 
     # store the content for scraping
     soup = BeautifulSoup(req.content, "html.parser")
@@ -37,11 +37,11 @@ def cheat_sheet_scraper(position):
     # empty player list that will be returned
     playerList = []
    
-    '''
+    """
     These scrape fantasy pros for the data of the player in a certain column of the cheat sheet.
     We scrape the name and team code of the player and then the link to the player profile
     
-    '''
+    """
     # player_data = soup.find_all("div", {"class":"three columns position-QB"})               # grabs the whole ranking list for that position
     player_name = player_data[0].contents[3].find_all("a")                                      # grabs the name
     player_team = player_data[0].contents[3].find_all("small", {"class":"grey"})                # grabs the team code i.e. "SF"
@@ -56,7 +56,7 @@ def cheat_sheet_scraper(position):
     # loops through the length of the players scraped
     for i in range(len(player_name)):
         # holds the href link for the player to fantasypros site
-        link = player_link[i].get('href')
+        link = player_link[i].get("href")
 
         # if this is one of the valid links
         if link != "#":
@@ -70,7 +70,7 @@ def cheat_sheet_scraper(position):
             totalValidLinks += 1
 
             # store the iinformation gathered in our player structs
-            player = PlayerStruct(rnk, name, baseUrl + link)
+            player = PlayerStruct(rnk, name, ff_Pro_baseUrl + link)
 
             # add to our list of players
             playerList.append(player)
@@ -80,32 +80,65 @@ def cheat_sheet_scraper(position):
 
 
 def fantasy_news_scraper():
-     # the base url info we are using to scrape the player fantasy news
-    baseUrl = "https://www.fantasypros.com"
+     # the base url info we are using to scrape the player fantasy news from ff pros
+    ff_Pro_baseUrl = "https://www.fantasypros.com"
+
+    yahoo_ff_baseUrl = "https://football.fantasysports.yahoo.com/"
 
     # we want fantasy football news
-    league = "/nfl/"
+    # league = "/nfl/"
+
+    urls = [ff_Pro_baseUrl, yahoo_ff_baseUrl]
 
     # struct used to store this info temorarily
     # TODO save in a Player app / model
     PlayerNews = namedtuple("PlayerNews", "Text Link")
-     # we make a get request to fantasy webpage and store the content
-    req = requests.get(baseUrl + league)
-
-    # store the content for scraping
-    soup = BeautifulSoup(req.content, "html.parser")
 
     player_news = []
 
-    fantasy_news = soup.find_all("div", {"id":"player-news-nfl"})
-    nfl_players = fantasy_news[0].find_all("div", {"class":"extra"})
+    ff_pros_news = []
+    rotoworld_news = []
+    nfl_com_news = []
 
-    for i in nfl_players:
+    for url in urls:
 
-        player_link = baseUrl + i.find('a')['href']
-        player_text = i.find('a').text
-        #test_player = fantasy_news.
-        player_news.append(PlayerNews(player_text, player_link))
+        # we make a get request to fantasy webpage and store the content
+        req = requests.get(url)
 
+        # store the content for scraping
+        soup = BeautifulSoup(req.content, "html.parser")
+
+        if url == ff_Pro_baseUrl:
+
+            fantasy_news = soup.find_all("div", {"id":"player-news-nfl"})
+            nfl_players = fantasy_news[0].find_all("div", {"class":"extra"})
+
+            for i in nfl_players:
+
+                player_link = ff_Pro_baseUrl + i.find("a")["href"]
+                player_text = i.find("a").text
+               
+                ff_pros_news.append(PlayerNews(player_text, player_link))
+
+        elif url == yahoo_ff_baseUrl:
+            # we make a get request to fantasy webpage and store the content
+            req = requests.get(url)
+
+            # store the content for scraping
+            soup = BeautifulSoup(req.content, "html.parser")
+
+            fantasy_news = soup.find_all("section", {"id":"playernotes"})
+            nfl_players_news = fantasy_news[0].contents[3].find_all('li')
+
+            for i in nfl_players_news:
+                player_link = i.find("a")["href"]
+                player_text= i.find("a").text
+
+                rotoworld_news.append(PlayerNews(player_text, player_link))
+     
+    player_news.append(ff_pros_news)
+    player_news.append(rotoworld_news)
    
+
+
     return player_news      
