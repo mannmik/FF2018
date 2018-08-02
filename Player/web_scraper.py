@@ -174,7 +174,7 @@ def strength_of_schedule_scraper():
     teams = []
     teams.append({"Team":"BUF", "QB":1, "RB":10, "WR":17})
     teams.append({"Team":"ARI", "QB":2, "RB":6, "WR":20})
-    teams.append({"Team":"JAX", "QB":3, "RB":27, "WR":4})
+    teams.append({"Team":"JAC", "QB":3, "RB":27, "WR":4})
     teams.append({"Team":"PHI", "QB":4, "RB":12, "WR":19})
     teams.append({"Team":"NO", "QB":5, "RB":19, "WR":16})
     teams.append({"Team":"LAC", "QB":6, "RB":14, "WR":14})
