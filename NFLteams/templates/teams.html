@@ -19,24 +19,29 @@
 
     {% if team_list %}
     <div class="container text-center">
-            <h2>NFL Team Info</h2>
+            
             <p></p>            
-            <table class="table">
+            <table class="table table-dark">
               <thead>
-               
                     <tr>
                         <th>Team Code</th>
                         <th>Team Name</th>
                         <th>Bye Week</th>
+                        <th>QB $</th>
+                        <th>RB $</th>
+                        <th>WR $</th>
                     </tr>
                 
               </thead>
               <tbody>
                 {% for i in team_list.all %}
-                <tr>
+                <tr class="col-md-5">
                   <td>{{i.code}}</td>
                   <td>{{i.fullName}}</td>
                   <td>{{i.byeWeek}}</td>
+                  <td>{{i.qb_SOS}}</td>
+                  <td>{{i.rb_SOS}}</td>
+                  <td>{{i.wr_SOS}}</td>
                 </tr>
                 {% endfor %}
               </tbody>

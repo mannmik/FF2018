@@ -43,6 +43,8 @@ class NFL_Team(models.Model):
 
     def get_shortName(self):
         return self.shortName
+
+
     
 
 

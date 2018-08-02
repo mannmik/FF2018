@@ -18,35 +18,34 @@
 
 {% block content %}
         <br />
-
-        <div class="container-fluid">
+        <div height="100px">
+        <div class="container">
             <div class="row">
               <div class="col-lg">
-                  <h2>Basic Table</h2>
-                  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
+                  <h1>Welcome!</h1>          
                   <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                      </tr>
-                    </thead>
                     <tbody>
                       <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                      </tr>
+                        <p style="text-indent: 20px">
+                          Fantasy Football season is finally upon us! This site has the essentials for dominating any league, period. 
+                          Nerdy Jock Fantasy Football leaves out the excess fluff and provides you with what really matters. Here you can view news from the 
+                          top fantasy sites, view player rankings, nfl team byes, strength of schedule and more! This website is put together with the knowledge and experience 
+                          of champions. <br /> 
+                          <p style="text-indent: 20px">
+                            Wolfpack* is a proven Oldskool FFL Championship team that started out as the Bill Belichick to Bill Parcell's Giants.
+                          Before Wolfpack* grew into the powerhouse they are today, they were winning championships under the tutelage of Jack Mann. 
+                          The same mann who's coaching tree spans 3 proven champions( and a toilet bowl team who wrote I heart Brady on draft boards, but thats neither here nor there).
+                          The same mann who scraped together a bunch of Misfits* to beat even the most dominating of forces; shout out to Brett Favre in Monday Night Primtetime.
+                          </p>
+                          <p style="text-indent: 20px">
+                          With the information on this website you can drink until you sleep through rounds 3-13 of your fantasy draft and still come out as champions.
+                          With this information Wolfpack* started Blake Bortles in a fantasy championship...and won. 
+                          With this information do what you please and have fun! Have to love fantasy football baby.
+                          Hope you enjoy this web site brought to you by some nerdy jock. Sign up today and join The Pack!
+                        </p> 
+                      </p>
+                    </tr>
                       <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                      </tr>
-                      <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
                       </tr>
                     </tbody>
                   </table>
@@ -60,10 +59,10 @@
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                          <a class="nav-link active" data-toggle="tab" style="color: black" href="#home">Fantasy Pros</a>
+                          <a class="nav-link active" data-toggle="tab" style="color: black" href="#home">Rotoworld</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" style="color: black" href="#menu1">Rotoworld</a>
+                          <a class="nav-link" data-toggle="tab" style="color: black" href="#menu1">Fantasy Pros</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" style="color: black" href="#menu2">NFL.com</a>
@@ -75,12 +74,12 @@
                         <div id="home" class="container tab-pane active"><br>
                           
                           <p style="text-align:left" >
-                              {% if news.0 %}
+                              {% if news.1 %}
 
                               <ul class="list-group list-group-flush" style="text-align:left">
-                              {% for i in news.0 %}
+                              {% for i in news.1 %}
       
-                               <li class="list-group-item"style="text-align:left"> <a href={{i.Link}} target="_blank" >{{ i.Text }}</a>  </li>     
+                               <li class="list-group-item"style="text-align:left"> <a href={{i.Link}} style="color: black" target="_blank" >{{ i.Text }}</a>  </li>     
       
                               {% endfor %}
                               </ul>
@@ -92,12 +91,12 @@
                         <div id="menu1" class="container tab-pane fade"><br>
                           
                           <p style="text-align:left" >
-                              {% if news.1 %}
+                              {% if news.0 %}
 
                               <ul class="list-group list-group-flush" style="text-align:left">
-                              {% for i in news.1 %}
+                              {% for i in news.0 %}
       
-                               <li class="list-group-item"style="text-align:left"> <a href={{i.Link}} target="_blank" >{{ i.Text }}</a>  </li>     
+                               <li class="list-group-item"> <a href={{i.Link}} style="color: black" target="_blank" >{{ i.Text }}</a>  </li>     
       
                               {% endfor %}
                               </ul>
@@ -119,7 +118,7 @@
                                       {% for i in news %}
                                     <tr>
                                       <td style="text-align:left">
-                                          <a style="color: deepskyblue" href={{i.Link}} target="_blank" >{{ i.Text }}</a>
+                                          <a style="color: black" href={{i.Link}} target="_blank" >{{ i.Text }}</a>
                                       </td>
                                     </tr>
                                     {% endfor %}
@@ -134,38 +133,17 @@
             </div>
          
           </div>
-        <div class="container">
-                <h2>Basic Table</h2>
-                <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Email</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>Mary</td>
-                      <td>Moe</td>
-                      <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>July</td>
-                      <td>Dooley</td>
-                      <td>july@example.com</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div> 
+        </div>
+        <div class="container text-center" style="padding-top:50px">
+             <h2>"NOW this is the law of the jungle, as old and as true as the sky, And the wolf that shall keep it may prosper, but the wolf that shall break it must die. As the creeper that girdles the tree trunk, the law runneth forward and back; For the strength of the pack is the wolf, and the strength of the wolf is the pack."</h2>
+              
+             <p style="padding-top:20px">
+                <img src="{% static 'wolf2.png' %}" height=250px width=250px />
+             </p >
 
-              <table class="table table-dark">
+        </div> 
+
+             <!-- <table class="table table-dark">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -194,7 +172,8 @@
                     <td>@twitter</td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
+
 {% endblock %}
  
  
