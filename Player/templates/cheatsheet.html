@@ -20,7 +20,7 @@
 {% block content %}
         <br />
 
-        <div class="container text-center">
+      <!--  <div class="container text-center">
                 {% if players %}
                 <table class="table table-dark">
                                
@@ -56,6 +56,105 @@
                 </table>
 
                 
+
+                {% endif %} -->
+
+                {% if customsheet %}
+
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                  <a class="nav-link" data-toggle="tab" style="color: black" href="#home">Fantasy Pros</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" data-toggle="tab" style="color: black" href="#menu2">Wolfpack*</a>
+                                </li>
+                              </ul>
+                            
+                              <!-- Tab panes -->
+                              <div class="tab-content">
+                                <div id="home" class="container tab-pane active"><br>
+                                        {% if players %}
+                                        <table class="table table-dark">
+                                                       
+                                                <thead>
+                                                        
+                                                        <tr>
+                                                        <th scope="col">QB</th>
+                                                        <th scope="col">RB</th>
+                                                        <th scope="col">WR</th>
+                                                        <th scope="col">TE</th>
+                                                        </tr>
+                                                </thead>
+                                                
+                                                <tbody>
+                                                {% for i in players %}
+                        
+                                                        <tr>
+                                                        <td>
+                                                                <a href={{i.qb_link}} target="_blank" style="color:deepskyblue"> {{ i.qb_name }}</a>
+                                                        </td>
+                                                        <td>
+                                                                <a href={{i.rb_link}} target="_blank" style="color:deepskyblue">{{  i.rb_name }} </a>
+                                                        </td>
+                                                        <td>
+                                                                <a href={{i.wr_link}} target="_blank" style="color:deepskyblue">{{  i.wr_name }} </a>
+                                                        </td>
+                                                        <td>
+                                                                <a href={{i.te_link}} target="_blank" style="color:deepskyblue">{{  i.te_name }} </a>
+                                                        </td>
+                                                        </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                        </table>
+                                        {% endif %}
+                                
+                                </div>
+                                <div id="menu2" class="container tab-pane fade"><br>
+                                  <p>
+                                      <table class="table table-dark">
+                                          <thead style="text-align: center">
+                                            
+                                              <th style="text-align: center">Custom Cheatsheet Via Wolfpack* </th>
+                                              <tr>
+                                                      <td scope="col">
+                                                              QB
+                                                      </td>
+                                                      <td scope="col">
+                                                                RB
+                                                        </td>
+                                                        <td scope="col">
+                                                                WR
+                                                        </td>
+                                                        <td scope="col">
+                                                                TE
+                                                        </td>
+                                              </tr>
+                                            
+                                          </thead>
+                                          <tbody>
+                                              {% if customsheet %}
+                                              {% for i in customsheet %}
+                                            <tr>
+                                              <td style="text-align:left">
+                                                  <a style="color:deepskyblue" href={{i.qb_link}} target="_blank" >{{ i.QB }}</a>
+                                              </td>
+                                              <td style="text-align:left">
+                                                        <a style="color:deepskyblue" href={{i.rb_link}} target="_blank" >{{ i.RB }}</a>
+                                              </td>
+                                              <td style="text-align:left">
+                                                        <a style="color:deepskyblue" href={{i.wr_link}} target="_blank" >{{ i.WR }}</a>
+                                                </td>
+                                                <td style="text-align:left">
+                                                        <a style="color:deepskyblue" href={{i.te_link}} target="_blank" >{{ i.TE }}</a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                            {% endif %}
+                                          </tbody>
+                                        </table>
+                                  </p>
+                                </div>
 
                 {% endif %}
         </div>

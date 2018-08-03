@@ -15,7 +15,7 @@ import numpy as np
 
 
 def CheatSheet(request):
-   
+    base_player_url = "https://www.fantasypros.com/nfl/players/"
     qb_list = web_scraper.cheat_sheet_scraper("QB")
     rb_list = web_scraper.cheat_sheet_scraper("RB")
     wr_list = web_scraper.cheat_sheet_scraper("WR")
@@ -33,8 +33,48 @@ def CheatSheet(request):
             qbs.append(PlayerTable("", "", str(rb_list[i][0]) + ". " + rb_list[i][1], rb_list[i][2], 
             str(wr_list[i][0]) + ". " + wr_list[i][1], wr_list[i][2], "", "" ))
 
-    #link = api_services.cheat_sheet_scraper()
-    return render(request, 'cheatsheet.html', {'qbs':qbs})
+    # #link = api_services.cheat_sheet_scraper()
+    # return render(request, 'cheatsheet.html', {'qbs':qbs})
+
+    CustomTable = namedtuple("CustomTable", "QB qb_link RB rb_link WR wr_link TE te_link")
+    qb_list = Player.objects.filter(position='QB')
+    rb_list = Player.objects.filter(position='RB').filter(positionRank__lte = 50)
+    wr_list = Player.objects.filter(position='WR').filter(positionRank__lte = 50)
+    te_list = Player.objects.filter(position='TE').filter(positionRank__lte = len(qb_list) + 1)
+
+    customsheet = []
+
+    for i in range(len(wr_list)):
+        if i < 32:
+            qb = str(qb_list[i].positionRank) + ". " + qb_list[i].fullName + ", " + qb_list[i].team.code
+            qb_link = base_player_url + qb_list[i].fullName.replace( " ","-").lower() + ".php"
+
+            rb = str(rb_list[i].positionRank) + ". " + rb_list[i].fullName + ", " + rb_list[i].team.code
+            rb_link = base_player_url + rb_list[i].fullName.replace(" ","-").lower() + ".php"
+
+            wr = str(wr_list[i].positionRank) + ". " + wr_list[i].fullName + ", " + wr_list[i].team.code
+            wr_link = base_player_url + wr_list[i].fullName.replace(" ","-").lower() + ".php"
+
+            te = str(te_list[i].positionRank)+ ". " + te_list[i].fullName + ", " + te_list[i].team.code
+            te_link = base_player_url + te_list[i].fullName.replace(" ","-").lower() + ".php"
+
+            customsheet.append(CustomTable(qb, qb_link, rb, rb_link, wr, wr_link, te, te_link))
+        else:
+            qb = ""
+            qb_link =""
+
+            rb = str(rb_list[i].positionRank) + ". " + rb_list[i].fullName + ", " + rb_list[i].team.code
+            rb_link = base_player_url + rb_list[i].fullName.replace(" ","-").lower() + ".php"
+
+            wr = str(wr_list[i].positionRank) + ". " + wr_list[i].fullName + ", " + wr_list[i].team.code
+            wr_link = base_player_url + wr_list[i].fullName.replace(" ","-").lower() + ".php"
+
+            te = ""
+            te_link = ""
+            customsheet.append(CustomTable(qb, qb_link, rb, rb_link, wr, wr_link, te, te_link)) 
+
+    return render(request, "cheatsheet.html", {'customsheet': customsheet, "players":qbs})
+
 
 
 def PlayerNews(request):
@@ -45,7 +85,7 @@ def PlayerNews(request):
 
 def Player_Init(request):
     if request.user.is_staff:
-
+        delete_all_players()
         qbs = panda.read_excel('QB.xlsx')
         rbs = panda.read_excel('RB.xlsx')
         wrs = panda.read_excel('WR.xlsx')
@@ -68,18 +108,18 @@ def Player_Init(request):
         # add all players for each position
         add_player_list('RB', rbs)
         add_player_list('WR', wrs)
-        add_player_list('DST', dst)
+        #add_player_list('DST', dst)
         add_player_list('TE', te)
         add_player_list('K', kickers)
         
 
-        qb_list = Player.objects.filter(position='QB')
-        rb_list = Player.objects.filter(position='RB')
-        wr_list = Player.objects.filter(position='WR')
-        te_list = Player.objects.filter(position='TE')
-        dst_list = Player.objects.filter(position='DST')
-        k_list = Player.objects.filter(position='K')
-        return render(request, "success.html", {"news":k_list})
+        #qb_list = Player.objects.filter(position='QB')
+        #rb_list = Player.objects.filter(position='RB').filter(positionRank__lte = 25)
+        #wr_list = Player.objects.filter(position='WR').filter(positionRank__lte = 50)
+        #te_list = Player.objects.filter(position='TE')
+        #dst_list = Player.objects.filter(position='DST')
+        #k_list = Player.objects.filter(position='K')
+        return render(request, "success.html")
     else:
         return render(request, 'login.html' , {"error": "You must be logged in to complete this action."})
 
@@ -101,3 +141,6 @@ def add_player_list(position, list):
 
 def del_player_by_pos(pos):
     Player.objects.filter(position=pos).delete()
+
+def delete_all_players():
+    Player.objects.all().delete()
