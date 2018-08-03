@@ -59,7 +59,7 @@
 
                 {% endif %} -->
 
-                {% if customsheet %}
+               
 
                   <!-- Nav tabs -->
                   <ul class="nav nav-tabs" role="tablist">
@@ -68,6 +68,18 @@
                                 </li>
                                 <li class="nav-item">
                                   <a class="nav-link" data-toggle="tab" style="color: black" href="#menu2">Wolfpack*</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" style="color: black" href="#QB"> QB</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" style="color: black" href="#RB"> RB</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" style="color: black" href="#WR"> WR</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" style="color: black" href="#TE"> TE</a>
                                 </li>
                               </ul>
                             
@@ -112,51 +124,225 @@
                                 </div>
                                 <div id="menu2" class="container tab-pane fade"><br>
                                   <p>
+                                {% if customsheet %}
                                       <table class="table table-dark">
+                                        <caption>Custom Cheatsheet Via Wolfpack*</caption>
                                           <thead style="text-align: center">
-                                            
-                                              <th style="text-align: center">Custom Cheatsheet Via Wolfpack* </th>
+                                           
                                               <tr>
                                                       <td scope="col">
                                                               QB
                                                       </td>
                                                       <td scope="col">
+                                                                Bye
+                                                        </td>
+                                                       
+                                                      <td scope="col">
                                                                 RB
                                                         </td>
+                                                        <td scope="col">
+                                                                        Bye
+                                                                </td>
+                                                                
                                                         <td scope="col">
                                                                 WR
                                                         </td>
                                                         <td scope="col">
+                                                                        Bye
+                                                                </td>
+                                                               
+                                                        <td scope="col">
                                                                 TE
                                                         </td>
+                                                        <td scope="col">
+                                                                        Bye
+                                                                </td>
+                                        
                                               </tr>
                                             
                                           </thead>
                                           <tbody>
-                                              {% if customsheet %}
+                                            
                                               {% for i in customsheet %}
                                             <tr>
                                               <td style="text-align:left">
                                                   <a style="color:deepskyblue" href={{i.qb_link}} target="_blank" >{{ i.QB }}</a>
                                               </td>
+
+                                              <td style="text-align:left">
+                                                        {{i.qb_team.byeWeek}}
+                                                </td>
+                                               
+
                                               <td style="text-align:left">
                                                         <a style="color:deepskyblue" href={{i.rb_link}} target="_blank" >{{ i.RB }}</a>
                                               </td>
+
+                                              <td style="text-align:left">
+                                                        {{i.rb_team.byeWeek}}
+                                                </td>
+                                               
+
                                               <td style="text-align:left">
                                                         <a style="color:deepskyblue" href={{i.wr_link}} target="_blank" >{{ i.WR }}</a>
                                                 </td>
+
+                                                <td style="text-align:left">
+                                                                {{i.wr_team.byeWeek}}
+                                                        </td>
+                                                       
+
                                                 <td style="text-align:left">
                                                         <a style="color:deepskyblue" href={{i.te_link}} target="_blank" >{{ i.TE }}</a>
                                                 </td>
+
+                                                <td style="text-align:left">
+                                                                {{i.wr_team.byeWeek}}
+                                                        </td>
+                                                        
                                             </tr>
                                             {% endfor %}
-                                            {% endif %}
                                           </tbody>
                                         </table>
+                                        {% elif customError %}
+                                        <div class="container text-center" style="padding-bottom:50px">
+                                        <em><b>{{customError}}</b></em>
+                                        </div>
+                                        {% endif %}
                                   </p>
                                 </div>
+                                <div id="QB" class="container tab-pane fade"><br>
+                                <p>
+                                        {%if qb_list %}
+                                                <table class="table table-dark">
+                                                <thead>
+                                                        <tr>
+                                                        <th scope="col">Rank</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Team</th>
+                                                        <th scope="col">Bye</th>
+                                                        <th scope="col">$OS</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for i in qb_list %}
+                                                        <tr>
+                                                        <td>{{i.positionRank}}</td>
+                                                        <td>{{i.fullName}}</td>
+                                                        <td>{{i.team.code }}</td>
+                                                        <td>{{i.team.byeWeek }}</td>
+                                                        
+                                                        <td>{{i.team.qb_SOS}}</td>
+                                                        </tr>
+                                                {% endfor %} 
+                                                </tbody>
+                                                </table>
+                                        {% elif customError %}
 
-                {% endif %}
+                                        <div class="container text-center" style="padding-bottom:50px">
+                                                        <em><b>{{customError}}</b></em>
+                                                        </div>
+
+                                        {% endif %}
+                                </p>
+                                </div>
+                                <div id="RB" class="container tab-pane fade"><br>
+                                        <p>
+                                                {%if rb_list %}
+                                                <table class="table table-dark">
+                                                <thead>
+                                                        <tr>
+                                                        <th scope="col">Rank</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Bye</th>
+                                                        <th scope="col">$OS</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for i in rb_list %}
+                                                        <tr>
+                                                        <td>{{i.positionRank}}</td>
+                                                        <td>{{i.fullName}}</td>
+                                                        <td>{{i.team.byeWeek}}</td>
+                                                        <td>{{i.team.rb_SOS}}</td>
+                                                        </tr>
+                                                {% endfor %} 
+                                                </tbody>
+                                                </table>
+                                                {% elif customError %}
+        
+                                                <div class="container text-center" style="padding-bottom:50px">
+                                                                <em><b>{{customError}}</b></em>
+                                                                </div>
+        
+                                                {% endif %}
+                                        </p>
+                                </div>
+                                <div id="WR" class="container tab-pane fade"><br>
+                                <p>
+                                        {%if wr_list %}
+                                        <table class="table table-dark">
+                                        <thead>
+                                                <tr>
+                                                <th scope="col">Rank</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Bye</th>
+                                                <th scope="col">$OS</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in wr_list %}
+                                                <tr>
+                                                <td>{{i.positionRank}}</td>
+                                                <td>{{i.fullName}}</td>
+                                                <td>{{i.team.byeWeek}}</td>
+                                                <td>{{i.team.wr_SOS}}</td>
+                                                </tr>
+                                        {% endfor %} 
+                                        </tbody>
+                                        </table>
+                                        {% elif customError %}
+
+                                        <div class="container text-center" style="padding-bottom:50px">
+                                                        <em><b>{{customError}}</b></em>
+                                                        </div>
+
+                                        {% endif %}
+                                </p>
+                                </div>
+                                <div id="TE" class="container tab-pane fade"><br>
+                                <p>
+                                        {%if te_list %}
+                                        <table class="table table-dark">
+                                        <thead>
+                                                <tr>
+                                                <th scope="col">Rank</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Bye</th>
+                                                <th scope="col">$OS</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in te_list %}
+                                                <tr>
+                                                <td>{{i.positionRank}}</td>
+                                                <td>{{i.fullName}}</td>
+                                                <td>{{i.team.byeWeek}}</td>
+                                                <td>{{i.team.te_SOS}}</td>
+                                                </tr>
+                                        {% endfor %} 
+                                        </tbody>
+                                        </table>
+                                        {% elif customError %}
+
+                                        <div class="container text-center" style="padding-bottom:50px">
+                                                        <em><b>{{customError}}</b></em>
+                                                        </div>
+
+                                        {% endif %}
+                                </p>
+                                </div>
+               
         </div>
 
 

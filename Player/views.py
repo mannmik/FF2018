@@ -35,45 +35,50 @@ def CheatSheet(request):
 
     # #link = api_services.cheat_sheet_scraper()
     # return render(request, 'cheatsheet.html', {'qbs':qbs})
+    if request.user.is_staff:
+        CustomTable = namedtuple("CustomTable", "QB qb_link qb_team RB rb_link rb_team WR wr_link wr_team TE te_link te_team")
+        qb_list = Player.objects.filter(position='QB')
+        rb_list = Player.objects.filter(position='RB').filter(positionRank__lte = 50)
+        wr_list = Player.objects.filter(position='WR').filter(positionRank__lte = 50)
+        te_list = Player.objects.filter(position='TE').filter(positionRank__lte = len(qb_list) + 1)
 
-    CustomTable = namedtuple("CustomTable", "QB qb_link RB rb_link WR wr_link TE te_link")
-    qb_list = Player.objects.filter(position='QB')
-    rb_list = Player.objects.filter(position='RB').filter(positionRank__lte = 50)
-    wr_list = Player.objects.filter(position='WR').filter(positionRank__lte = 50)
-    te_list = Player.objects.filter(position='TE').filter(positionRank__lte = len(qb_list) + 1)
+        customsheet = []
 
-    customsheet = []
+        for i in range(len(wr_list)):
+            if i < 32:
 
-    for i in range(len(wr_list)):
-        if i < 32:
-            qb = str(qb_list[i].positionRank) + ". " + qb_list[i].fullName + ", " + qb_list[i].team.code
-            qb_link = base_player_url + qb_list[i].fullName.replace( " ","-").lower() + ".php"
+                qb = str(qb_list[i].positionRank) + ". " + qb_list[i].fullName + ", " + qb_list[i].team.code
+                qb_link = base_player_url + qb_list[i].fullName.replace( " ","-").lower() + ".php"
 
-            rb = str(rb_list[i].positionRank) + ". " + rb_list[i].fullName + ", " + rb_list[i].team.code
-            rb_link = base_player_url + rb_list[i].fullName.replace(" ","-").lower() + ".php"
+                rb = str(rb_list[i].positionRank) + ". " + rb_list[i].fullName + ", " + rb_list[i].team.code
+                rb_link = base_player_url + rb_list[i].fullName.replace(" ","-").lower() + ".php"
 
-            wr = str(wr_list[i].positionRank) + ". " + wr_list[i].fullName + ", " + wr_list[i].team.code
-            wr_link = base_player_url + wr_list[i].fullName.replace(" ","-").lower() + ".php"
+                wr = str(wr_list[i].positionRank) + ". " + wr_list[i].fullName + ", " + wr_list[i].team.code
+                wr_link = base_player_url + wr_list[i].fullName.replace(" ","-").lower() + ".php"
 
-            te = str(te_list[i].positionRank)+ ". " + te_list[i].fullName + ", " + te_list[i].team.code
-            te_link = base_player_url + te_list[i].fullName.replace(" ","-").lower() + ".php"
+                te = str(te_list[i].positionRank)+ ". " + te_list[i].fullName + ", " + te_list[i].team.code
+                te_link = base_player_url + te_list[i].fullName.replace(" ","-").lower() + ".php"
 
-            customsheet.append(CustomTable(qb, qb_link, rb, rb_link, wr, wr_link, te, te_link))
-        else:
-            qb = ""
-            qb_link =""
+                customsheet.append(CustomTable(qb, qb_link, qb_list[i].team, rb, rb_link, rb_list[i].team, wr, wr_link, wr_list[i].team, te, te_link, te_list[i].team))
+            else:
+                qb = ""
+                qb_link =""
+                qb_team = NFL_Team()
+                rb = str(rb_list[i].positionRank) + ". " + rb_list[i].fullName + ", " + rb_list[i].team.code
+                rb_link = base_player_url + rb_list[i].fullName.replace(" ","-").lower() + ".php"
 
-            rb = str(rb_list[i].positionRank) + ". " + rb_list[i].fullName + ", " + rb_list[i].team.code
-            rb_link = base_player_url + rb_list[i].fullName.replace(" ","-").lower() + ".php"
+                wr = str(wr_list[i].positionRank) + ". " + wr_list[i].fullName + ", " + wr_list[i].team.code
+                wr_link = base_player_url + wr_list[i].fullName.replace(" ","-").lower() + ".php"
 
-            wr = str(wr_list[i].positionRank) + ". " + wr_list[i].fullName + ", " + wr_list[i].team.code
-            wr_link = base_player_url + wr_list[i].fullName.replace(" ","-").lower() + ".php"
+                te = ""
+                te_link = ""
+                te_team = NFL_Team()
+                customsheet.append(CustomTable(qb, qb_link, qb_team, rb, rb_link, rb_list[i].team, wr, wr_link, wr_list[i].team, te, te_link, te_team))
 
-            te = ""
-            te_link = ""
-            customsheet.append(CustomTable(qb, qb_link, rb, rb_link, wr, wr_link, te, te_link)) 
-
-    return render(request, "cheatsheet.html", {'customsheet': customsheet, "players":qbs})
+        return render(request, "cheatsheet.html", {'customsheet': customsheet, "players":qbs, "qb_list":qb_list, "rb_list":rb_list, "wr_list":wr_list, "te_list":te_list})
+    else:
+        customError = "Nice try, you need special permissions. Contact Nerdy Jock Fantasy Football."
+        return render(request, "cheatsheet.html", {'customError': customError, "players":qbs})
 
 
 
