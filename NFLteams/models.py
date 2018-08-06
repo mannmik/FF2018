@@ -19,6 +19,10 @@ class NFL_Team(models.Model):
     rb_SOS = models.IntegerField(default = -1)
     wr_SOS = models.IntegerField(default = -1)
     te_SOS = models.IntegerField(default = -1)
+    qb_Playoff = models.IntegerField(default = -1)
+    rb_Playoff = models.IntegerField(default = -1)
+    wr_Playoff = models.IntegerField(default = -1)
+    te_Playoff = models.IntegerField(default = -1) 
 
     def __str__(self):
         return self.code

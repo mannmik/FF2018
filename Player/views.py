@@ -60,7 +60,9 @@ def CheatSheet(request):
                 te_link = base_player_url + te_list[i].fullName.replace(" ","-").lower() + ".php"
 
                 customsheet.append(CustomTable(qb, qb_link, qb_list[i].team, rb, rb_link, rb_list[i].team, wr, wr_link, wr_list[i].team, te, te_link, te_list[i].team))
+
             else:
+                
                 qb = ""
                 qb_link =""
                 qb_team = NFL_Team()

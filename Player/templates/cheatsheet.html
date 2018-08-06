@@ -10,8 +10,6 @@
         <h3>
                 Player Rankings - 2018
         </h3>
-
-        <h6>via Fantasy Pros</h6>
         <div>
             <img src="{% static 'head_icon.png' %}" class="d-inline-block" />
         </div>
@@ -197,7 +195,7 @@
                                                 </td>
 
                                                 <td style="text-align:left">
-                                                                {{i.wr_team.byeWeek}}
+                                                                {{i.te_team.byeWeek}}
                                                         </td>
                                                         
                                             </tr>
@@ -213,26 +211,43 @@
                                 </div>
                                 <div id="QB" class="container tab-pane fade"><br>
                                 <p>
+                                                
+                                        
                                         {%if qb_list %}
-                                                <table class="table table-dark">
+                                        <h2> Welcome to Player Rankings!</h2>
+                                        <p style="text-indent: 20px; padding-bottom: 25px">
+                                                The chart below provides postional rankings along with the most critical information needed to become a champion.
+                                                Reg. SOS lists the strength of schedule for weeks 1-16 (fantasy football regular season) for that given player.
+                                                A rank of 1 means that player has the easiest predicted shedule and a rank of 32 means that player is 
+                                                predicted to have the most difficult schedule. $$ column shows the predicted players' playoff strength of schedule. 
+                                        </p>
+
+                                                <table class="table ">
                                                 <thead>
                                                         <tr>
                                                         <th scope="col">Rank</th>
                                                         <th scope="col">Name</th>
-                                                        <th scope="col">Team</th>
                                                         <th scope="col">Bye</th>
-                                                        <th scope="col">$OS</th>
+                                                        <th scope="col">Reg. SOS</th>
+                                                        <th scope="col">$$</th>
+                                                        <th scope="col">WK 13</th>
+                                                        <th scope="col">WK 14</th>
+                                                <th scope="col">WK 15</th>
+                                                <th scope="col">WK 16</th>
                                                         </tr>
                                                 </thead>
                                                 <tbody>
                                                 {% for i in qb_list %}
                                                         <tr>
                                                         <td>{{i.positionRank}}</td>
-                                                        <td>{{i.fullName}}</td>
-                                                        <td>{{i.team.code }}</td>
+                                                        <td>{{i.fullName}} - {{i.team.code}}</td>
                                                         <td>{{i.team.byeWeek }}</td>
-                                                        
                                                         <td>{{i.team.qb_SOS}}</td>
+                                                        <td>{{i.team.qb_Playoff}}</td>
+                                                        <td>{{i.team.wk13}}</td>
+                                                        <td>{{i.team.wk14}}</td>
+                                                        <td>{{i.team.wk15}}</td>
+                                                        <td>{{i.team.wk16}}</td>
                                                         </tr>
                                                 {% endfor %} 
                                                 </tbody>
@@ -249,22 +264,40 @@
                                 <div id="RB" class="container tab-pane fade"><br>
                                         <p>
                                                 {%if rb_list %}
-                                                <table class="table table-dark">
+                                                <h2> Welcome to Player Rankings!</h2>
+                                                <p style="text-indent: 20px; padding-bottom: 25px">
+                                                        The chart below provides postional rankings along with the most critical information needed to become a champion.
+                                                        Reg. SOS lists the strength of schedule for weeks 1-16 (fantasy football regular season) for that given player.
+                                                        A rank of 1 means that player has the easiest predicted shedule and a rank of 32 means that player is 
+                                                        predicted to have the most difficult schedule. $$ column shows the predicted players' playoff strength of schedule. 
+                                                </p>
+
+                                                <table class="table">
                                                 <thead>
                                                         <tr>
                                                         <th scope="col">Rank</th>
                                                         <th scope="col">Name</th>
                                                         <th scope="col">Bye</th>
-                                                        <th scope="col">$OS</th>
+                                                        <th scope="col">Reg. SOS</th>
+                                                        <th scope="col">$$</th>
+                                                        <th scope="col">WK 13</th>
+                                                        <th scope="col">WK 14</th>
+                                                <th scope="col">WK 15</th>
+                                                <th scope="col">WK 16</th>
                                                         </tr>
                                                 </thead>
                                                 <tbody>
                                                 {% for i in rb_list %}
                                                         <tr>
                                                         <td>{{i.positionRank}}</td>
-                                                        <td>{{i.fullName}}</td>
+                                                        <td>{{i.fullName}} - {{i.team.code}}</td>
                                                         <td>{{i.team.byeWeek}}</td>
                                                         <td>{{i.team.rb_SOS}}</td>
+                                                        <td>{{i.team.rb_Playoff}}</td>
+                                                        <td>{{i.team.wk14}}</td>
+                                                        <td>{{i.team.wk14}}</td>
+                                                        <td>{{i.team.wk15}}</td>
+                                                        <td>{{i.team.wk16}}</td>
                                                         </tr>
                                                 {% endfor %} 
                                                 </tbody>
@@ -280,23 +313,42 @@
                                 </div>
                                 <div id="WR" class="container tab-pane fade"><br>
                                 <p>
+                                      
                                         {%if wr_list %}
-                                        <table class="table table-dark">
+                                        <h2> Welcome to Player Rankings!</h2>
+                                        <p style="text-indent: 20px; padding-bottom: 25px">
+                                                The chart below provides postional rankings along with the most critical information needed to become a champion.
+                                                Reg. SOS lists the strength of schedule for weeks 1-16 (fantasy football regular season) for that given player.
+                                                A rank of 1 means that player has the easiest predicted shedule and a rank of 32 means that player is 
+                                                predicted to have the most difficult schedule. $$ column shows the predicted players' playoff strength of schedule. 
+                                        </p>
+
+                                        <table class="table">
                                         <thead>
                                                 <tr>
                                                 <th scope="col">Rank</th>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Bye</th>
-                                                <th scope="col">$OS</th>
+                                                <th scope="col">Reg. SOS</th>
+                                                <th scope="col">$$</th>
+                                                <th scope="col">WK 13</th>
+                                                <th scope="col">WK 14</th>
+                                                <th scope="col">WK 15</th>
+                                                <th scope="col">WK 16</th>
                                                 </tr>
                                         </thead>
                                         <tbody>
                                         {% for i in wr_list %}
                                                 <tr>
                                                 <td>{{i.positionRank}}</td>
-                                                <td>{{i.fullName}}</td>
+                                                <td>{{i.fullName}} - {{i.team.code}}</td>
                                                 <td>{{i.team.byeWeek}}</td>
                                                 <td>{{i.team.wr_SOS}}</td>
+                                                <td>{{i.team.wr_Playoff}}</td>
+                                                <td>{{i.team.wk14}}</td>
+                                                <td>{{i.team.wk14}}</td>
+                                                <td>{{i.team.wk15}}</td>
+                                                <td>{{i.team.wk16}}</td>
                                                 </tr>
                                         {% endfor %} 
                                         </tbody>
@@ -312,23 +364,42 @@
                                 </div>
                                 <div id="TE" class="container tab-pane fade"><br>
                                 <p>
+                                        
                                         {%if te_list %}
-                                        <table class="table table-dark">
+                                        <h2> Welcome to Player Rankings!</h2>
+                                        <p style="text-indent: 20px; padding-bottom: 25px">
+                                                The chart below provides postional rankings along with the most critical information needed to become a champion.
+                                                Reg. SOS lists the strength of schedule for weeks 1-16 (fantasy football regular season) for that given player.
+                                                A rank of 1 means that player has the easiest predicted shedule and a rank of 32 means that player is 
+                                                predicted to have the most difficult schedule. $$ column shows the predicted players' playoff strength of schedule. 
+                                        </p>
+
+                                        <table class="table">
                                         <thead>
                                                 <tr>
                                                 <th scope="col">Rank</th>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Bye</th>
-                                                <th scope="col">$OS</th>
+                                                <th scope="col">Reg. SOS</th>
+                                                <th scope="col">$$</th>
+                                                <th scope="col">WK 13</th>
+                                                <th scope="col">WK 14</th>
+                                                <th scope="col">WK 15</th>
+                                                <th scope="col">WK 16</th>
                                                 </tr>
                                         </thead>
                                         <tbody>
                                         {% for i in te_list %}
                                                 <tr>
                                                 <td>{{i.positionRank}}</td>
-                                                <td>{{i.fullName}}</td>
+                                                <td>{{i.fullName}} - {{i.team.code}}</td>
                                                 <td>{{i.team.byeWeek}}</td>
                                                 <td>{{i.team.te_SOS}}</td>
+                                                <td>{{i.team.te_Playoff}}</td>
+                                                <td>{{i.team.wk13}}</td>
+                                                <td>{{i.team.wk14}}</td>
+                                                <td>{{i.team.wk15}}</td>
+                                                <td>{{i.team.wk16}}</td>
                                                 </tr>
                                         {% endfor %} 
                                         </tbody>
