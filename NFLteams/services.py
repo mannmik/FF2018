@@ -73,6 +73,11 @@ def set_strength_of_schedule():
         team.save()
 
 
+'''
+Function sets each NFL_Team objects' playoff schedule
+Schedule is for weeks 13-16
+Reads information from the wk_13-16 excel sheet
+'''
 def set_playoff_schedule():
     teams = NFL_Team.objects.order_by('code')
 

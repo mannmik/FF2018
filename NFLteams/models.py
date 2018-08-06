@@ -27,26 +27,7 @@ class NFL_Team(models.Model):
     def __str__(self):
         return self.code
 
-    def set_code(self, teamcode):
-        self.code = teamcode
-
-    def set_fullName(self, fname):
-        self.fullName = fname
-    
-    def set_byeWeek(self, bye):
-        self.byeWeek = byeWeek
-
-    def set_code(self, sname):
-        self.shortName = sname
-    
-    def get_code(self):
-        return self.code
-
-    def get_fullName(self):
-        return self.fullName
-
-    def get_shortName(self):
-        return self.shortName
+   
 
 
     
