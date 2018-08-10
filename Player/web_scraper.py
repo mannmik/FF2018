@@ -31,7 +31,6 @@ def cheat_sheet_scraper(position):
     
 
     # struct used to store this info temorarily
-    # TODO save in a Player app / model
     PlayerStruct = namedtuple("PlayerStruct", "Rank Name Link")
 
     # empty player list that will be returned
@@ -91,14 +90,13 @@ def fantasy_news_scraper():
     urls = [ff_Pro_baseUrl, yahoo_ff_baseUrl]
 
     # struct used to store this info temorarily
-    # TODO save in a Player app / model
     PlayerNews = namedtuple("PlayerNews", "Text Link")
 
     player_news = []
 
     ff_pros_news = []
     rotoworld_news = []
-    nfl_com_news = []
+
 
     for url in urls:
 

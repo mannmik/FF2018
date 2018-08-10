@@ -16,18 +16,17 @@ API call returns code, fullName and shortName of each NFL Team
 
 '''
 def get_nfl_teams():
-    # need the url of ffn we are going to
-    baseUrl = "https://www.fantasyfootballnerd.com/service/nfl-teams/"
-    key = "e9zs2aed4rjm"
-    dataType = "json/"
-    url = baseUrl + dataType + key
+   
+    baseUrl = "https://www.fantasyfootballnerd.com/service/nfl-teams/"  # need the url of ffn and the API service we want
+    key = "e9zs2aed4rjm"                                                # the api key for our free account created for this site
+    dataType = "json/"                                                  # tells the API that we want data in json format not xml
+    url = baseUrl + dataType + key                                      # combining all of our parameters to create the full URL for our API calls
     
-    # set up our parameters
-    # r = requests.get(url, params=params)
+    # make our call to the API
     req = requests.get(url)
 
-    # load the request
-    data = req.json() #json.loads(req.content)
+    # gather json data from our request
+    data = req.json()
     
     return data
 
@@ -39,10 +38,10 @@ These attributes are present for each NFL team on a by that week
 
 '''
 def get_byeweeks():
-    baseUrl = "https://www.fantasyfootballnerd.com/service/byes/"
-    key = "e9zs2aed4rjm"
-    dataType = "json/"
-    url = baseUrl + dataType + key
+    baseUrl = "https://www.fantasyfootballnerd.com/service/byes/"   # need the base url of ffn and the API service we want
+    key = "e9zs2aed4rjm"                                            # the api key for our free account created for this site
+    dataType = "json/"                                              # tells the API that we want data in json format not xml
+    url = baseUrl + dataType + key                                  # combining all of our parameters to create the full URL for our API calls
 
     req = requests.get(url)
 

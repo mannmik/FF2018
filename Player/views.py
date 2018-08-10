@@ -100,32 +100,14 @@ def Player_Init(request):
         #dst = panda.read_excel('DST.xlsx')
         kickers = panda.read_excel('K.xlsx')
 
-        # loop through our qbs and save them in Player models
-        for i in range(len(qbs['Rank'])):
-            new_player = Player()
-
-            new_player.fullName = qbs.loc[i, 'Name']
-            new_player.position = 'QB'
-            new_player.positionRank = qbs.loc[i, 'Rank']
-            team = NFL_Team.objects.get(code=qbs.loc[i, 'Team'])
-            new_player.team = team
-
-            new_player.save()
-
         # add all players for each position
+        add_player_list('QB', qbs)
         add_player_list('RB', rbs)
         add_player_list('WR', wrs)
         #add_player_list('DST', dst)
         add_player_list('TE', te)
         add_player_list('K', kickers)
         
-
-        #qb_list = Player.objects.filter(position='QB')
-        #rb_list = Player.objects.filter(position='RB').filter(positionRank__lte = 25)
-        #wr_list = Player.objects.filter(position='WR').filter(positionRank__lte = 50)
-        #te_list = Player.objects.filter(position='TE')
-        #dst_list = Player.objects.filter(position='DST')
-        #k_list = Player.objects.filter(position='K')
         return render(request, "success.html")
     else:
         return render(request, 'login.html' , {"error": "You must be logged in to complete this action."})
