@@ -4,10 +4,10 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.Home, name='home'),
+    path('fantasyfootball/admin/', admin.site.urls),
+    path('fantasyfootball', views.Home, name='home'),
     #path('login/', views.LogIn),
-    path('useraccount/', include('UserAccount.urls')),
-    path('nflteams/', include('NFLteams.urls')),
-    path('player/', include('Player.urls')),
+    path('fantasyfootball/useraccount/', include('UserAccount.urls')),
+    path('fantasyfootball/nflteams/', include('NFLteams.urls')),
+    path('fantasyfootball/player/', include('Player.urls')),
 ]
